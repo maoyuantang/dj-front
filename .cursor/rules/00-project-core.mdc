@@ -1,0 +1,6 @@
+---
+description: 项目统一 AI 入口与核心安全边界
+alwaysApply: true
+---
+
+先读 `ai/bootstrap/bootstrap.md`，再按任务选择规则和资料。代码/配置优先，保护用户改动，不猜事实、不泄露凭证，只做最小修改；未经要求不执行 Git 写操作，如实报告验证、跳过项和风险。

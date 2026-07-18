@@ -11,6 +11,9 @@ node_modules
 .DS_Store
 dist
 *.local
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .idea
@@ -19,3 +22,6 @@ dist
 *.njsproj
 *.sln
 *.sw?
+.eslintcache
+.stylelintcache
+.vitest

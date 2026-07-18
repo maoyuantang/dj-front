@@ -1,0 +1,7 @@
+---
+description: API、请求、环境、类型与状态任务入口
+globs: src/api/**/*,src/types/**/*,src/config/**/*,src/stores/**/*,src/utils/auth.ts,src/router/**/*
+alwaysApply: false
+---
+
+读取 `ai/rules/api.md`、`security.md` 和 `docs/api/README.md`。定位已验证 operation，复用 request/env/auth 边界，不编造 schema、鉴权语义或凭证。
