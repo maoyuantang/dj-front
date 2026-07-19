@@ -1,7 +1,7 @@
 import { authStorage } from "@/utils/auth";
 
 export const LOGIN_PATH = "/pages/auth/login/index";
-const PUBLIC_PATHS = new Set([LOGIN_PATH, "/pages/index/index"]);
+const PUBLIC_PATHS = new Set([LOGIN_PATH, "/pages/auth/phone-login/index", "/pages/index/index"]);
 
 export const unauthorized = (redirect = "") => {
   const query = redirect ? `?redirect=${encodeURIComponent(redirect)}` : "";
