@@ -2,29 +2,101 @@
   "pages": [
     {
       "path": "pages/auth/login/index",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "登录"
-      }
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "登录" }
     },
     {
       "path": "pages/auth/phone-login/index",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "手机号登录"
-      }
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "手机号登录" }
     },
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "商城首页",
+        "backgroundColor": "#F6F5F1"
       }
+    },
+    {
+      "path": "pages/category/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "商品分类" }
+    },
+    {
+      "path": "pages/search/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "搜索发现" }
+    },
+    {
+      "path": "pages/search/results",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "搜索结果" }
+    },
+    {
+      "path": "pages/product/detail/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "商品详情" }
+    },
+    {
+      "path": "pages/product/spec/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "规格选择" }
+    },
+    {
+      "path": "pages/product/reviews/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "商品评价" }
+    },
+    {
+      "path": "pages/cart/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "购物车" }
+    },
+    {
+      "path": "pages/checkout/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "确认订单" }
+    },
+    {
+      "path": "pages/payment/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "收银台" }
+    },
+    {
+      "path": "pages/payment/success",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "支付成功" }
+    },
+    {
+      "path": "pages/orders/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "我的订单" }
+    },
+    {
+      "path": "pages/orders/detail",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "订单详情" }
+    },
+    {
+      "path": "pages/logistics/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "物流详情" }
+    },
+    {
+      "path": "pages/review/create",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "评价商品" }
+    },
+    {
+      "path": "pages/refund/apply",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "申请售后" }
+    },
+    {
+      "path": "pages/refund/detail",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "售后详情" }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "个人中心" }
+    },
+    {
+      "path": "pages/profile/addresses",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "地址管理" }
+    },
+    {
+      "path": "pages/profile/coupons",
+      "style": { "navigationStyle": "custom", "navigationBarTitleText": "优惠券中心" }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "首页",
+    "navigationBarTitleText": "日和集",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F6F5F1"
   }
 }

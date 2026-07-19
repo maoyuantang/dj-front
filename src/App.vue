@@ -12,3 +12,8 @@ onHide(() => {
   console.log("App Hide");
 });
 </script>
+
+<style lang="scss">
+/* stylelint-disable-next-line import-notation, scss/load-partial-extension -- uni-app alias resolution needs it. */
+@import "@/styles/shop.scss";
+</style>

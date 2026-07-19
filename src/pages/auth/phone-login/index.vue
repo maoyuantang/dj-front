@@ -1,28 +1,67 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { authApi } from "@/api/auth";
+import { authPlatform, type WechatPhoneEventDetail } from "@/platform/auth";
+import { useAuthStore } from "@/stores/auth";
 
 const phone = ref("");
 const code = ref("");
 const requesting = ref(false);
+const submitting = ref(false);
+const authStore = useAuthStore();
 
 const goBack = () => uni.navigateBack();
-const requestCode = () => {
+const requestCode = async () => {
   if (!/^1\d{10}$/.test(phone.value)) {
     uni.showToast({ title: "请输入正确的手机号", icon: "none" });
     return;
   }
+  if (requesting.value) return;
   requesting.value = true;
-  setTimeout(() => {
+  try {
+    await authApi.sendSmsCode(phone.value);
+    uni.showToast({ title: "验证码已发送", icon: "success" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "验证码发送失败";
+    uni.showToast({ title: message, icon: "none" });
+  } finally {
     requesting.value = false;
-    uni.showToast({ title: "验证码待接入", icon: "none" });
-  }, 300);
+  }
 };
-const submit = () => {
+const submit = async () => {
   if (!phone.value || !code.value) {
     uni.showToast({ title: "请完善登录信息", icon: "none" });
     return;
   }
-  uni.showToast({ title: "登录接口待接入", icon: "none" });
+  if (submitting.value) return;
+  submitting.value = true;
+  try {
+    const session = await authApi.loginWithSms(phone.value, code.value);
+    authStore.setSession(session);
+    uni.reLaunch({ url: "/pages/index/index" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "登录失败，请稍后重试";
+    uni.showToast({ title: message, icon: "none" });
+  } finally {
+    submitting.value = false;
+  }
+};
+
+const loginWithWechatPhone = async (event: { detail: WechatPhoneEventDetail }) => {
+  if (submitting.value) return;
+  submitting.value = true;
+  try {
+    const phoneCredential = authPlatform.getWechatPhoneCredential(event.detail);
+    const loginCredential = await authPlatform.loginWithWechat();
+    const session = await authApi.loginWithWechatPhone(loginCredential, phoneCredential);
+    authStore.setSession(session);
+    uni.reLaunch({ url: "/pages/index/index" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "微信手机号登录失败";
+    uni.showToast({ title: message, icon: "none" });
+  } finally {
+    submitting.value = false;
+  }
 };
 </script>
 
@@ -90,10 +129,21 @@ const submit = () => {
       </view>
       <button
         class="submit-button"
+        :disabled="submitting"
         @click="submit"
       >
-        登录
+        {{ submitting ? "登录中…" : "登录" }}
       </button>
+      <!-- #ifdef MP-WEIXIN -->
+      <button
+        class="wechat-phone-button"
+        open-type="getPhoneNumber"
+        :disabled="submitting"
+        @getphonenumber="loginWithWechatPhone"
+      >
+        微信手机号快捷登录
+      </button>
+      <!-- #endif -->
       <view class="service-note">
         登录即代表同意相关服务协议
       </view>
@@ -235,6 +285,24 @@ const submit = () => {
 }
 
 .submit-button::after {
+  border: 0;
+}
+
+.wechat-phone-button {
+  width: 100%;
+  height: 46px;
+  padding: 0;
+  margin: -12px 0 0;
+  color: #d94f2b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 44px;
+  background: #fff;
+  border: 1px solid #d94f2b;
+  border-radius: 14px;
+}
+
+.wechat-phone-button::after {
   border: 0;
 }
 

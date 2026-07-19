@@ -1,0 +1,245 @@
+page {
+  color: #20221f;
+  font-size: 24rpx;
+  background: #f6f5f1;
+}
+
+.shop-page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #f6f5f1;
+}
+
+.shop-page.with-nav {
+  padding-bottom: calc(126rpx + env(safe-area-inset-bottom));
+}
+.shop-page.with-fixed {
+  padding-bottom: calc(110rpx + env(safe-area-inset-bottom));
+}
+.shop-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+.shop-column {
+  display: flex;
+  flex-direction: column;
+}
+.shop-grow {
+  flex: 1;
+  min-width: 0;
+}
+.shop-muted {
+  color: #8b8d86;
+  font-size: 20rpx;
+}
+.shop-brand {
+  color: #d94f2b;
+}
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 92rpx;
+  padding: env(safe-area-inset-top) 30rpx 0;
+  box-sizing: content-box;
+  background: #fff;
+}
+.shop-header-side {
+  display: flex;
+  align-items: center;
+  width: 90rpx;
+  min-height: 72rpx;
+}
+.shop-header-side.right {
+  justify-content: flex-end;
+  font-size: 22rpx;
+}
+.shop-header-back {
+  font-size: 60rpx;
+  font-weight: 300;
+  line-height: 1;
+}
+.shop-header-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.shop-bottom-nav {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  height: calc(126rpx + env(safe-area-inset-bottom));
+  padding: 14rpx 40rpx calc(18rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+}
+.shop-nav-item {
+  display: flex;
+  min-width: 92rpx;
+  flex-direction: column;
+  gap: 4rpx;
+  align-items: center;
+  justify-content: center;
+  color: #969990;
+  font-size: 18rpx;
+}
+.shop-nav-icon {
+  font-size: 40rpx;
+  line-height: 1;
+}
+.shop-nav-item.active {
+  color: #d94f2b;
+}
+
+.shop-surface {
+  padding: 28rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+.shop-section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.shop-search {
+  display: flex;
+  gap: 14rpx;
+  align-items: center;
+  height: 72rpx;
+  padding: 0 24rpx;
+  color: #969890;
+  background: #efeee9;
+  border-radius: 24rpx;
+}
+.shop-search-icon {
+  font-size: 34rpx;
+}
+.shop-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20rpx;
+}
+.shop-product-card {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 16rpx;
+}
+.shop-product-image {
+  display: block;
+  width: 100%;
+  height: 310rpx;
+  background: #f1efe9;
+}
+.shop-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  padding: 20rpx 22rpx 22rpx;
+}
+.shop-product-name {
+  overflow: hidden;
+  font-weight: 700;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shop-price {
+  display: flex;
+  align-items: baseline;
+  color: #d94f2b;
+  font-size: 20rpx;
+}
+.shop-price .value {
+  font-size: 38rpx;
+  font-weight: 700;
+}
+.shop-round-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-size: 34rpx;
+  line-height: 48rpx;
+  background: #d94f2b;
+  border: 0;
+  border-radius: 50%;
+}
+.shop-round-add::after {
+  border: 0;
+}
+
+.shop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.shop-tag {
+  padding: 14rpx 26rpx;
+  color: #555;
+  background: #eeede8;
+  border-radius: 16rpx;
+}
+.shop-tag.active {
+  color: #d94f2b;
+  background: #f9e6df;
+  border: 1rpx solid #edb5a5;
+}
+.shop-fixed-button {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 18rpx 28rpx calc(22rpx + env(safe-area-inset-bottom));
+  background: #fff;
+}
+.shop-primary {
+  width: 100%;
+  height: 84rpx;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 84rpx;
+  background: #d94f2b;
+  border: 0;
+  border-radius: 16rpx;
+}
+.shop-primary::after {
+  border: 0;
+}
+
+.shop-order-product {
+  display: flex;
+  gap: 20rpx;
+  margin: 24rpx 0;
+}
+.shop-order-thumb {
+  flex: 0 0 auto;
+  width: 144rpx;
+  height: 144rpx;
+  overflow: hidden;
+  background: #f3f0e9;
+  border-radius: 16rpx;
+}
+.shop-order-thumb image {
+  width: 100%;
+  height: 100%;
+}
+.shop-order-product .shop-grow {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}

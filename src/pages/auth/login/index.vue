@@ -1,19 +1,36 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { authPlatform } from "@/platform/auth";
+import { authApi } from "@/api/auth";
+import { useAuthStore } from "@/stores/auth";
 
 const agreed = ref(false);
+const submitting = ref(false);
+const authStore = useAuthStore();
 
 const goPhoneLogin = () => {
   uni.navigateTo({ url: "/pages/auth/phone-login/index" });
 };
 
-const loginByWechat = () => {
+const loginByWechat = async () => {
   if (!agreed.value) {
     uni.showToast({ title: "请先同意服务协议", icon: "none" });
     return;
   }
 
-  uni.showToast({ title: "微信登录待接入", icon: "none" });
+  if (submitting.value) return;
+  submitting.value = true;
+  try {
+    const credential = await authPlatform.loginWithWechat();
+    const session = await authApi.loginWithWechat(credential);
+    authStore.setSession(session);
+    uni.reLaunch({ url: "/pages/index/index" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "微信登录失败，请稍后重试";
+    uni.showToast({ title: message, icon: "none" });
+  } finally {
+    submitting.value = false;
+  }
 };
 </script>
 
@@ -45,10 +62,11 @@ const loginByWechat = () => {
     </view>
     <button
       class="primary-button"
-      :class="{ disabled: !agreed }"
+      :class="{ disabled: !agreed || submitting }"
+      :disabled="submitting"
       @click="loginByWechat"
     >
-      微信快捷登录
+      {{ submitting ? "登录中…" : "微信快捷登录" }}
     </button>
     <view
       class="phone-link"
