@@ -16,3 +16,5 @@ export const getApiBaseUrl = (): string => {
   }
   return value.replace(/\/$/, "");
 };
+
+export const isSmsLoginEnabled = () => import.meta.env.VITE_ENABLE_SMS_LOGIN === "true";

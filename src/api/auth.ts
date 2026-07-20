@@ -55,5 +55,16 @@ export const authApi = {
     })) as unknown as ApiEnvelope<AuthSession>;
     return unwrap(response);
   },
-};
 
+  async refresh(refreshToken: string) {
+    const response = (await request.post("/auth/refresh", { refreshToken })) as unknown as ApiEnvelope<AuthSession>;
+    return unwrap(response);
+  },
+
+  async logout(refreshToken: string) {
+    const response = (await request.post("/auth/logout", { refreshToken })) as unknown as ApiEnvelope<{
+      success: boolean;
+    }>;
+    return unwrap(response);
+  },
+};

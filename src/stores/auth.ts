@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { authStorage } from "@/utils/auth";
 import type { AuthSession, AuthUser } from "@/api/auth";
+import { authApi } from "@/api/auth";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -20,6 +21,18 @@ export const useAuthStore = defineStore("auth", {
       this.user = session.user;
       authStorage.setToken(session.accessToken);
       authStorage.setRefreshToken(session.refreshToken);
+    },
+    async refreshSession() {
+      if (!this.refreshToken) throw new Error("缺少刷新令牌");
+      const session = await authApi.refresh(this.refreshToken);
+      this.setSession(session);
+      return session.accessToken;
+    },
+    async logout() {
+      const refreshToken = this.refreshToken;
+      this.clear();
+      if (refreshToken) await authApi.logout(refreshToken);
+      uni.reLaunch({ url: "/pages/auth/login/index" });
     },
     clear() {
       this.token = "";

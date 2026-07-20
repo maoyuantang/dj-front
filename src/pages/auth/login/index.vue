@@ -3,10 +3,12 @@ import { ref } from "vue";
 import { authPlatform } from "@/platform/auth";
 import { authApi } from "@/api/auth";
 import { useAuthStore } from "@/stores/auth";
+import { isSmsLoginEnabled } from "@/config/env";
 
 const agreed = ref(false);
 const submitting = ref(false);
 const authStore = useAuthStore();
+const smsLoginEnabled = isSmsLoginEnabled();
 
 const goPhoneLogin = () => {
   uni.navigateTo({ url: "/pages/auth/phone-login/index" });
@@ -69,6 +71,7 @@ const loginByWechat = async () => {
       {{ submitting ? "登录中…" : "微信快捷登录" }}
     </button>
     <view
+      v-if="smsLoginEnabled"
       class="phone-link"
       @click="goPhoneLogin"
     >
